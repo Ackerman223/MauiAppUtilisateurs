@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppUtilisateurs.MainPage">
+
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" 
+                             Padding="30, 0" 
+                             VerticalOptions="Center" 
+                             HorizontalOptions="Center">
+            <Label Text="La gestion des utilisateurs" 
+                   HorizontalOptions="Center" 
+                   FontSize="Large" />
+
+            <Grid HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Id" VerticalTextAlignment="Center" />
+                <Entry x:Name="IdEntry" Grid.Column="1" IsEnabled="false" />
+
+                <Label Text="Nom" VerticalTextAlignment="Center" Grid.Row="1" />
+                <Entry x:Name="NomEntry" Grid.Column="1" Grid.Row="1" Placeholder="Saisir votre nom" />
+
+                <Label Text="Prénom" VerticalTextAlignment="Center" Grid.Row="2" />
+                <Entry x:Name="PrenomEntry" Grid.Column="1" Grid.Row="2" Placeholder="Saisir votre prénom" />
+
+                <Label Text="Age" VerticalTextAlignment="Center" Grid.Row="3" />
+                <Entry x:Name="AgeEntry" Grid.Column="1" Grid.Row="3" Placeholder="Saisir votre age" />
+            </Grid>
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <ImageButton Source="plus.png" HeightRequest="24" WidthRequest="24"
+                             Clicked="Clicked_Btn_Ajouter" />
+                <ImageButton Source="remove.png" HeightRequest="24" WidthRequest="24"
+                             Clicked="Clicked_Btn_Supprimer" />
+                <ImageButton Source="refresh.png" HeightRequest="24" WidthRequest="24"
+                             Clicked="Clicked_Btn_Modifier" />
+                <Label Text="Liste des personnes"
+                       HorizontalOptions="Center"
+                       FontSize="Title" />
+                <ListView ItemsSource="{Binding Persons}"
+                          ItemSelected="Selected_Person"
+                          BackgroundColor="LightBlue">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Spacing="5" Margin="5" HorizontalOptions="Center">
+                                    <Label Text="{Binding Id}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Nom}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Prenom}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Age}" FontAttributes="Bold" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
